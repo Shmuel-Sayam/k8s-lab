@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-gateway-config
+data:
+
+  index.html: |
+    <!DOCTYPE html>
+    <html>
+    <body style="font-family:Arial;text-align:center;padding-top:60px;background:#111;color:white">
+      <h1>Shmuel's Kubernetes Lab</h1>
+      <h3>Choose an application:</h3>
+      <a href="/dvwa/" style="color:#4ade80;font-size:22px;">DVWA</a>
+    </body>
+    </html>
+
+  main.conf: |
+    server {
+        listen 80 default_server;
+        server_name _;
+
+        # Homepage
+        root /usr/share/nginx/html;
+        index index.html;
+
+        location / {
+            try_files $uri /index.html;
+        }
+
+        include /etc/nginx/conf.d/apps/*.conf;
+    }
+
+  dvwa.conf: |
+    location /dvwa/ {
+        rewrite ^/dvwa/?(.*)$ /$1 break;
+        proxy_pass http://dvwa.default.svc.cluster.local;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
