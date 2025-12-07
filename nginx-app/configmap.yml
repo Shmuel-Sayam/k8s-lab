@@ -4,29 +4,18 @@ metadata:
   name: nginx-config
 data:
 
-  # Homepage (served from /)
   index.html: |
     <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <title>Shmuel Home Lab</title>
-      <style>
-        body { font-family: Arial; background:#121212; color:#eee; text-align:center; padding-top:80px; }
-        a { color:#4ade80; font-size:22px; display:block; margin:12px; text-decoration:none; }
-      </style>
-    </head>
+    <html>
     <body>
-      <h1>Welcome to Shmuel's Home Lab</h1>
-      <p>Select an application:</p>
+      <h1>Shmuel Lab Homepage</h1>
       <a href="/dvwa/">DVWA</a>
     </body>
     </html>
 
-  # Homepage routing
   homepage.conf: |
     server {
-        listen 80;
+        listen 80 default_server;
         server_name _;
 
         root /usr/share/nginx/html;
@@ -35,9 +24,11 @@ data:
         location / {
             try_files $uri /index.html;
         }
+
+        # Include all application routes
+        include /etc/nginx/conf.d/apps/*.conf;
     }
 
-  # DVWA reverse proxy
   dvwa.conf: |
     location /dvwa/ {
         rewrite ^/dvwa/?(.*)$ /$1 break;
