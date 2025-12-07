@@ -3,7 +3,28 @@ kind: ConfigMap
 metadata:
   name: nginx-config
 data:
-  default.conf: |
+
+  # Homepage (served from /)
+  index.html: |
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <title>Shmuel Home Lab</title>
+      <style>
+        body { font-family: Arial; background:#121212; color:#eee; text-align:center; padding-top:80px; }
+        a { color:#4ade80; font-size:22px; display:block; margin:12px; text-decoration:none; }
+      </style>
+    </head>
+    <body>
+      <h1>Welcome to Shmuel's Home Lab</h1>
+      <p>Select an application:</p>
+      <a href="/dvwa/">DVWA</a>
+    </body>
+    </html>
+
+  # Homepage routing
+  homepage.conf: |
     server {
         listen 80;
         server_name _;
@@ -11,266 +32,16 @@ data:
         root /usr/share/nginx/html;
         index index.html;
 
-        # Lab Homepage
         location / {
-            try_files /index.html =404;
-        }
-
-        # DVWA Reverse Proxy
-        location /dvwa/ {
-            rewrite ^/dvwa/?(.*)$ /$1 break;
-            proxy_pass http://dvwa.default.svc.cluster.local;
-            proxy_set_header Host $host;
-            proxy_set_header X-Real-IP $remote_addr;
+            try_files $uri /index.html;
         }
     }
 
-  index.html: |
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Shmuel Lab - Concept Control</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <style>
-            * {
-                box-sizing: border-box;
-                margin: 0;
-                padding: 0;
-            }
-            body {
-                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-                background: radial-gradient(circle at top, #1f2933, #020617 55%);
-                color: #e5e7eb;
-                min-height: 100vh;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            .page {
-                max-width: 1080px;
-                width: 100%;
-                padding: 32px 20px;
-            }
-            .hero {
-                background: rgba(15, 23, 42, 0.9);
-                border-radius: 18px;
-                padding: 28px 28px 24px;
-                box-shadow: 0 24px 60px rgba(0,0,0,0.55);
-                border: 1px solid rgba(148, 163, 184, 0.18);
-                margin-bottom: 22px;
-            }
-            .hero-tag {
-                display: inline-flex;
-                align-items: center;
-                gap: 8px;
-                font-size: 11px;
-                letter-spacing: .12em;
-                text-transform: uppercase;
-                color: #9ca3af;
-                padding: 4px 10px;
-                border-radius: 999px;
-                border: 1px solid rgba(148, 163, 184, 0.35);
-                margin-bottom: 14px;
-            }
-            .hero-title {
-                font-size: 28px;
-                font-weight: 650;
-                margin-bottom: 6px;
-            }
-            .hero-subtitle {
-                font-size: 14px;
-                color: #9ca3af;
-                max-width: 520px;
-                line-height: 1.5;
-            }
-            .hero-meta {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 14px;
-                margin-top: 18px;
-                font-size: 12px;
-                color: #9ca3af;
-            }
-            .pill {
-                padding: 6px 10px;
-                border-radius: 999px;
-                background: rgba(15, 118, 110, 0.18);
-                color: #6ee7b7;
-                border: 1px solid rgba(45, 212, 191, 0.35);
-            }
-            .grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-                gap: 16px;
-                margin-top: 12px;
-            }
-            .card {
-                background: rgba(15, 23, 42, 0.92);
-                border-radius: 16px;
-                padding: 16px 16px 14px;
-                border: 1px solid rgba(75, 85, 99, 0.65);
-                box-shadow: 0 12px 30px rgba(0,0,0,0.5);
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-            }
-            .card-header {
-                margin-bottom: 10px;
-            }
-            .card-title {
-                font-size: 16px;
-                font-weight: 600;
-                margin-bottom: 2px;
-            }
-            .card-subtitle {
-                font-size: 12px;
-                color: #9ca3af;
-            }
-            .card-body {
-                font-size: 12px;
-                color: #9ca3af;
-                line-height: 1.5;
-                margin-bottom: 10px;
-            }
-            .card-actions {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                gap: 8px;
-                margin-top: 4px;
-            }
-            .badge {
-                font-size: 11px;
-                padding: 3px 8px;
-                border-radius: 999px;
-                border: 1px solid rgba(148,163,184,0.4);
-                color: #9ca3af;
-            }
-            .btn {
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                gap: 6px;
-                font-size: 12px;
-                font-weight: 600;
-                padding: 7px 14px;
-                border-radius: 999px;
-                text-decoration: none;
-                cursor: pointer;
-                border: none;
-                transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.1s ease;
-                white-space: nowrap;
-            }
-            .btn-primary {
-                background: linear-gradient(135deg, #22c55e, #16a34a);
-                color: #022c22;
-                box-shadow: 0 12px 30px rgba(34, 197, 94, 0.35);
-            }
-            .btn-secondary {
-                background: rgba(15, 23, 42, 0.95);
-                color: #e5e7eb;
-                border: 1px solid rgba(148, 163, 184, 0.6);
-            }
-            .btn:hover {
-                transform: translateY(-1px);
-                box-shadow: 0 16px 32px rgba(0,0,0,0.55);
-            }
-            .footer {
-                margin-top: 8px;
-                font-size: 11px;
-                text-align: center;
-                color: #6b7280;
-            }
-            @media (max-width: 640px) {
-                .hero {
-                    padding: 22px 18px 18px;
-                }
-                .hero-title {
-                    font-size: 22px;
-                }
-            }
-        </style>
-    </head>
-    <body>
-        <main class="page">
-            <section class="hero">
-                <div class="hero-tag">
-                    <span>SHMUEL LAB</span>
-                    <span>CONCEPT CONTROL</span>
-                </div>
-                <h1 class="hero-title">Kubernetes Home Lab Experience</h1>
-                <p class="hero-subtitle">
-                    Central landing page for your Kubernetes + Argo CD lab. 
-                    Use these tiles to jump into the core systems, external tools and demo integrations.
-                </p>
-                <div class="hero-meta">
-                    <span class="pill">GitOps powered by Argo CD</span>
-                    <span>Cluster: <strong>Home-Lab</strong></span>
-                    <span>Environment: <strong>Playground</strong></span>
-                </div>
-                <div class="grid">
-                    <article class="card">
-                        <div>
-                            <div class="card-header">
-                                <h2 class="card-title">Argo CD Console</h2>
-                                <p class="card-subtitle">Manage deployments, sync status and application health.</p>
-                            </div>
-                            <p class="card-body">
-                                Open the GitOps control plane, review application graphs, and trigger manual syncs or rollbacks
-                                for your lab services.
-                            </p>
-                        </div>
-                        <div class="card-actions">
-                            <span class="badge">GitOps</span>
-                            <a class="btn btn-primary" href="http://localhost:30082" target="_blank" rel="noopener noreferrer">
-                                Open Argo CD
-                            </a>
-                        </div>
-                    </article>
-
-                    <article class="card">
-                        <div>
-                            <div class="card-header">
-                                <h2 class="card-title">Public Tools</h2>
-                                <p class="card-subtitle">External services useful for testing flows and connectivity.</p>
-                            </div>
-                            <p class="card-body">
-                                Quick access to common endpoints when debugging DNS, egress, proxy rules or outbound policies
-                                from your Kubernetes workloads.
-                            </p>
-                        </div>
-                        <div class="card-actions">
-                            <a class="btn btn-secondary" href="https://www.google.com" target="_blank" rel="noopener noreferrer">
-                                Google
-                            </a>
-                            <a class="btn btn-secondary" href="https://ip-api.com" target="_blank" rel="noopener noreferrer">
-                                ip-api.com
-                            </a>
-                        </div>
-                    </article>
-
-                    <article class="card">
-                        <div>
-                            <div class="card-header">
-                                <h2 class="card-title">Lab Notes</h2>
-                                <p class="card-subtitle">Document experiments, ideas and next steps.</p>
-                            </div>
-                            <p class="card-body">
-                                Treat this lab like a concept store for platforms. Use a note system or Git repo to track
-                                what you test - ingress rules, WAF policies, MTLS chains and more.
-                            </p>
-                        </div>
-                        <div class="card-actions">
-                            <span class="badge">Concept Store</span>
-                            <span style="font-size: 11px; color:#9ca3af;">Customize this tile in ConfigMap.</span>
-                        </div>
-                    </article>
-                </div>
-                <p class="footer">
-                    Shmuel Home Lab &bull; Kubernetes · Argo CD · NGINX · GitOps Playground
-                </p>
-            </section>
-        </main>
-    </body>
-    </html>
+  # DVWA reverse proxy
+  dvwa.conf: |
+    location /dvwa/ {
+        rewrite ^/dvwa/?(.*)$ /$1 break;
+        proxy_pass http://dvwa.default.svc.cluster.local;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
