@@ -11,12 +11,15 @@ data:
         root /usr/share/nginx/html;
         index index.html;
 
+        # Lab Homepage
         location / {
             try_files /index.html =404;
         }
 
+        # DVWA Reverse Proxy
         location /dvwa/ {
-            proxy_pass http://dvwa.default.svc.cluster.local/;
+            rewrite ^/dvwa/?(.*)$ /$1 break;
+            proxy_pass http://dvwa.default.svc.cluster.local;
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
         }
