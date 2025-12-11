@@ -1,23 +1,46 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dvwa
-  labels:
-    app: dvwa
+  name: dvwa-lab
+  namespace: lab-security
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: dvwa
+      app: dvwa-lab
   template:
     metadata:
       labels:
-        app: dvwa
+        app: dvwa-lab
     spec:
       containers:
         - name: dvwa
-          image: vulnerables/web-dvwa
+          image: vulnerables/web-dvwa:latest
           ports:
             - containerPort: 80
-          securityContext:
-            runAsUser: 0   # DVWA דורש הרשאות root
+
+          env:
+            - name: DVWA_SECURITY_LEVEL
+              value: "low"
+            - name: MYSQL_DB_HOST
+              value: "127.0.0.1"
+            - name: MYSQL_DB_USER
+              value: "root"
+            - name: MYSQL_DB_PASSWORD
+              value: "password"
+            - name: MYSQL_DB_NAME
+              value: "dvwa"
+
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 20
+            periodSeconds: 10
+
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 30
+            periodSeconds: 20
