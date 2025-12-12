@@ -11,8 +11,25 @@ spec:
     chart: kube-prometheus-stack
     targetRevision: 58.5.0
     helm:
-      valueFiles:
-        - values.yml
+      values: |
+        grafana:
+          adminPassword: admin
+          service:
+            type: NodePort
+            nodePort: 30900
+
+        prometheus:
+          service:
+            type: ClusterIP
+
+        alertmanager:
+          enabled: false
+
+        kubeStateMetrics:
+          enabled: true
+
+        nodeExporter:
+          enabled: true
 
   destination:
     server: https://kubernetes.default.svc
