@@ -1,0 +1,18 @@
+grafana:
+  adminPassword: admin
+  service:
+    type: NodePort
+    nodePort: 30900
+
+prometheus:
+  service:
+    type: ClusterIP
+
+alertmanager:
+  enabled: false
+
+kubeStateMetrics:
+  enabled: true
+
+nodeExporter:
+  enabled: true
