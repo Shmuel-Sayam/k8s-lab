@@ -290,8 +290,8 @@ data:
           </main>
       </body>
       </html>
-
- main.conf: |
+      
+  main.conf: |
     server {
         listen 80 default_server;
         server_name _;
