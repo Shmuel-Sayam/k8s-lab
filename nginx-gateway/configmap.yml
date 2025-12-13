@@ -174,136 +174,136 @@ data:
     <body>
         <main class="page">
             <section class="hero">
-                <div class="hero-tag">
-                    <span>SHMUEL LAB</span>
-                    <span>CONCEPT CONTROL</span>
-                </div>
-                <h1 class="hero-title">Kubernetes Home Lab Experience</h1>
-                <p class="hero-subtitle">
-                    Central landing page for your Kubernetes + Argo CD lab. 
-                    Use these tiles to jump into the core systems, external tools and demo integrations.
-                </p>
-                <div class="hero-meta">
-                    <span class="pill">GitOps powered by Argo CD</span>
-                    <span>Cluster: <strong>Home-Lab</strong></span>
-                    <span>Environment: <strong>Playground</strong></span>
-                </div>
-                <div class="grid">
-                    <article class="card">
-                        <div>
-                            <div class="card-header">
-                                <h2 class="card-title">Argo CD</h2>
-                                <p class="card-subtitle">Manage deployments, sync status and application health.</p>
-                            </div>
-                            <p class="card-body">
-                                Open the GitOps control plane, review application graphs, and trigger manual syncs or rollbacks
-                                for your lab services.
-                            </p>
-                        </div>
-                        <div class="card-actions">
-                            <span class="badge">GitOps</span>
-                            <a class="btn btn-primary" href="https://192.168.10.25:30082/login" target="_blank" rel="noopener noreferrer">
-                                Go To Argo CD
-                            </a>
-                        </div>
-                    </article>
+                  <div class="hero-tag">
+                      <span>SHMUEL LAB</span>
+                      <span>CONCEPT CONTROL</span>
+                  </div>
+                  <h1 class="hero-title">Kubernetes Home Lab Experience</h1>
+                  <p class="hero-subtitle">
+                      Central landing page for your Kubernetes + Argo CD lab. 
+                      Use these tiles to jump into the core systems, external tools and demo integrations.
+                  </p>
+                  <div class="hero-meta">
+                      <span class="pill">GitOps powered by Argo CD</span>
+                      <span>Cluster: <strong>Home-Lab</strong></span>
+                      <span>Environment: <strong>Playground</strong></span>
+                  </div>
+                  <div class="grid">
+                      <article class="card">
+                          <div>
+                              <div class="card-header">
+                                  <h2 class="card-title">Argo CD</h2>
+                                  <p class="card-subtitle">Manage deployments, sync status and application health.</p>
+                              </div>
+                              <p class="card-body">
+                                  Open the GitOps control plane, review application graphs, and trigger manual syncs or rollbacks
+                                  for your lab services.
+                              </p>
+                          </div>
+                          <div class="card-actions">
+                              <span class="badge">GitOps</span>
+                              <a class="btn btn-primary" href="https://192.168.10.25:30082/login" target="_blank" rel="noopener noreferrer">
+                                  Go To Argo CD
+                              </a>
+                          </div>
+                      </article>
 
-                    <article class="card">
-                        <div>
-                            <div class="card-header">
-                                <h2 class="card-title">Github</h2>
-                                <p class="card-subtitle">Kubernetes sandbox for hands-on learning and security labs.</p>
-                            </div>
-                            <p class="card-body">
-                                Personal k8s playground used to learn, break, and rebuild real-world patterns.
-                            </p>
-                        </div>
-                        <div class="card-actions">
-                            <span class="badge">GitOps</span>
-                            <a class="btn btn-primary" href="https://github.com/Shmuel-Sayam/k8s-lab/" target="_blank" rel="noopener noreferrer">
-                                Go To Github
-                            </a>
-                        </div>
-                    </article>
+                      <article class="card">
+                          <div>
+                              <div class="card-header">
+                                  <h2 class="card-title">Github</h2>
+                                  <p class="card-subtitle">Kubernetes sandbox for hands-on learning and security labs.</p>
+                              </div>
+                              <p class="card-body">
+                                  Personal k8s playground used to learn, break, and rebuild real-world patterns.
+                              </p>
+                          </div>
+                          <div class="card-actions">
+                              <span class="badge">GitOps</span>
+                              <a class="btn btn-primary" href="https://github.com/Shmuel-Sayam/k8s-lab/" target="_blank" rel="noopener noreferrer">
+                                  Go To Github
+                              </a>
+                          </div>
+                      </article>
 
-                    <article class="card">
-                        <div>
-                            <div class="card-header">
-                                <h2 class="card-title">Grafana</h2>
-                                <p class="card-subtitle">Grafana dashboards for observability and lab visibility.</p>
-                            </div>
-                            <p class="card-body">
-                                Grafana dashboards for tracking performance, errors, and security signals in lab environments.
-                            </p>
-                        </div>
-                        <div class="card-actions">
-                            <span class="badge">Monitoring</span>
-                            <a class="btn btn-primary" href="http://192.168.10.25:30900" target="_blank" rel="noopener noreferrer">
-                                Go To Grafana
-                            </a>
-                        </div>
-                    </article>                    
-                    <article class="card">
-                        <div>
-                            <div class="card-header">
-                                <h2 class="card-title">Nginx Health Status</h2>
-                                <p class="card-subtitle">Validate service availability and reverse proxy status.</p>
-                            </div>
-                            <p class="card-body">
-                                Access /health to confirm NGINX is running, responsive, and correctly routing traffic within the lab.
-                            </p>
-                        </div>
-                        <div class="card-actions">
-                            <span class="badge">DevOps</span>
-                            <a class="btn btn-primary" href="http://192.168.10.25:30083/health" target="_blank" rel="noopener noreferrer">
-                                Go To Health Check
-                            </a>
-                        </div>
-                    </article>
-                    
-                    <article class="card">
-                        <div>
-                            <div class="card-header">
-                                <h2 class="card-title">DVWA Web Server</h2>
-                                <p class="card-subtitle">Test vulnerable application exposure through a secured ingress layer.</p>
-                            </div>
-                            <p class="card-body">
-                                Expose DVWA through NGINX to emulate real-world reverse proxy and security behavior.
-                            </p>
-                        </div>
-                        <div class="card-actions">
-                            <span class="badge">DevSecOps</span>
-                            <a class="btn btn-primary" href="http://192.168.10.25:30083/dvwa" target="_blank" rel="noopener noreferrer">
-                                Go To DVWA
-                            </a>
-                        </div>
-                    </article>
-                    
-                </div>
-                <p class="footer">
-                    Shmuel Home Lab &bull; Kubernetes · Argo CD · NGINX · GitOps Playground
-                </p>
-            </section>
-        </main>
-    </body>
-    </html>
+                      <article class="card">
+                          <div>
+                              <div class="card-header">
+                                  <h2 class="card-title">Grafana</h2>
+                                  <p class="card-subtitle">Grafana dashboards for observability and lab visibility.</p>
+                              </div>
+                              <p class="card-body">
+                                  Grafana dashboards for tracking performance, errors, and security signals in lab environments.
+                              </p>
+                          </div>
+                          <div class="card-actions">
+                              <span class="badge">Monitoring</span>
+                              <a class="btn btn-primary" href="http://192.168.10.25:30900" target="_blank" rel="noopener noreferrer">
+                                  Go To Grafana
+                              </a>
+                          </div>
+                      </article>                    
+                      <article class="card">
+                          <div>
+                              <div class="card-header">
+                                  <h2 class="card-title">Nginx Health Status</h2>
+                                  <p class="card-subtitle">Validate service availability and reverse proxy status.</p>
+                              </div>
+                              <p class="card-body">
+                                  Access /health to confirm NGINX is running, responsive, and correctly routing traffic within the lab.
+                              </p>
+                          </div>
+                          <div class="card-actions">
+                              <span class="badge">DevOps</span>
+                              <a class="btn btn-primary" href="http://192.168.10.25:30083/health" target="_blank" rel="noopener noreferrer">
+                                  Go To Health Check
+                              </a>
+                          </div>
+                      </article>
+                      
+                      <article class="card">
+                          <div>
+                              <div class="card-header">
+                                  <h2 class="card-title">DVWA Web Server</h2>
+                                  <p class="card-subtitle">Test vulnerable application exposure through a secured ingress layer.</p>
+                              </div>
+                              <p class="card-body">
+                                  Expose DVWA through NGINX to emulate real-world reverse proxy and security behavior.
+                              </p>
+                          </div>
+                          <div class="card-actions">
+                              <span class="badge">DevSecOps</span>
+                              <a class="btn btn-primary" href="http://192.168.10.25:30083/dvwa" target="_blank" rel="noopener noreferrer">
+                                  Go To DVWA
+                              </a>
+                          </div>
+                      </article>
+                      
+                  </div>
+                  <p class="footer">
+                      Shmuel Home Lab &bull; Kubernetes · Argo CD · NGINX · GitOps Playground
+                  </p>
+              </section>
+          </main>
+      </body>
+      </html>
 
 
-  main.conf: |
-    server {
-        listen 80 default_server;
-        server_name _;
+    main.conf: |
+      server {
+          listen 80 default_server;
+          server_name _;
 
-        # Homepage
-        root /usr/share/nginx/html;
-        index index.html;
+          # Homepage
+          root /usr/share/nginx/html;
+          index index.html;
 
-        location / {
-            try_files $uri /index.html;
-        }
+          location / {
+              try_files $uri /index.html;
+          }
 
-        include /etc/nginx/conf.d/apps/*.conf;
-    }
+          include /etc/nginx/conf.d/apps/*.conf;
+      }
 
   dvwa.conf: |
     location /dvwa/ {
