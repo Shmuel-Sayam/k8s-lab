@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-lab
+  name: nginx
   namespace: lab-security
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx-lab
+      app: nginx
   template:
     metadata:
       labels:
-        app: nginx-lab
+        app: nginx
     spec:
       containers:
         - name: nginx
@@ -20,25 +20,25 @@ spec:
             - containerPort: 80
 
           volumeMounts:
+            - name: nginx-html
+              mountPath: /usr/share/nginx/html/index.html
+              subPath: index.html
+
             - name: nginx-config
-              mountPath: /etc/nginx/conf.d
-              readOnly: true
-
-          readinessProbe:
-            httpGet:
-              path: /health
-              port: 80
-            initialDelaySeconds: 5
-            periodSeconds: 5
-
-          livenessProbe:
-            httpGet:
-              path: /health
-              port: 80
-            initialDelaySeconds: 10
-            periodSeconds: 10
+              mountPath: /etc/nginx/conf.d/main.conf
+              subPath: main.conf
 
       volumes:
+        - name: nginx-html
+          configMap:
+            name: nginx-lab-config
+            items:
+              - key: index.html
+                path: index.html
+
         - name: nginx-config
           configMap:
             name: nginx-lab-config
+            items:
+              - key: main.conf
+                path: main.conf
