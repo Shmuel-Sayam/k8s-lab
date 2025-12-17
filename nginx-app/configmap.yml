@@ -289,34 +289,30 @@ data:
       </body>
       </html>
 
+data:
   main.conf: |
     upstream dvwa_backend {
         server dvwa-lab:80;
     }
 
     server {
-      listen 80 default_server;
-       server_name _;
+        listen 80;
+        server_name _;
 
-       root /usr/share/nginx/html;
-       index index.html;
+        root /usr/share/nginx/html;
+        index index.html;
 
-       location = / {
-           try_files /index.html =404;
-       }
+        location = / {
+            try_files /index.html =404;
+        }
 
-       location /health {
-           access_log off;
-           add_header Content-Type text/plain;
-           return 200 "nginx-lab: ok\n";
-       }
+        location /health {
+            return 200 "ok\n";
+        }
 
-       location /dvwa/ {
-           proxy_pass http://dvwa_backend/;
-           proxy_set_header Host $host;
-           proxy_set_header X-Real-IP $remote_addr;
-           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-           proxy_set_header X-Forwarded-Proto $scheme;
-       }
+        location /dvwa/ {
+            proxy_pass http://dvwa_backend/;
+        }
+    }
 
   
