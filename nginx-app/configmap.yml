@@ -290,7 +290,7 @@ data:
           </main>
       </body>
       </html>
-      
+
   main.conf: |
     server {
         listen 80 default_server;
@@ -312,8 +312,15 @@ data:
     }
 
     server {
-        listen 80;
+        listen 80 default_server;
         server_name _;
+
+        root /usr/share/nginx/html;
+        index index.html;
+
+        location = / {
+            try_files /index.html =404;
+        }
 
         location /health {
             access_log off;
