@@ -30,8 +30,13 @@ data:
           }
 
           location /dvwa/ {
-              proxy_pass http://dvwa_backend/;
+              proxy_pass http://dvwa_backend/dvwa/;
+              proxy_redirect off;
           }
+
+          location /dvwa {
+            return 301 $scheme://$http_host/dvwa/;
+        }
       }
 
     index.html: |
