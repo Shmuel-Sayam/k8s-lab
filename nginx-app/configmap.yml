@@ -4,7 +4,29 @@ metadata:
   name: nginx-lab-config
   namespace: lab-security
 data:
+    upstream dvwa_backend {
+        server dvwa-lab:80;
+    }
 
+    server {
+        listen 80;
+        server_name _;
+
+        root /usr/share/nginx/html;
+        index index.html;
+
+        location = / {
+            try_files /index.html =404;
+        }
+
+        location /health {
+            return 200 "ok\n";
+        }
+
+        location /dvwa/ {
+            proxy_pass http://dvwa_backend/;
+        }
+    }
   index.html: |
     <!DOCTYPE html>
     <html lang="en">
@@ -288,31 +310,3 @@ data:
           </main>
       </body>
       </html>
-
-data:
-  main.conf: |
-    upstream dvwa_backend {
-        server dvwa-lab:80;
-    }
-
-    server {
-        listen 80;
-        server_name _;
-
-        root /usr/share/nginx/html;
-        index index.html;
-
-        location = / {
-            try_files /index.html =404;
-        }
-
-        location /health {
-            return 200 "ok\n";
-        }
-
-        location /dvwa/ {
-            proxy_pass http://dvwa_backend/;
-        }
-    }
-
-  
