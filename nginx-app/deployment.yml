@@ -7,7 +7,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx-lab # חייב להתאים לסרביס
+      app: nginx-lab
   template:
     metadata:
       labels:
@@ -16,22 +16,17 @@ spec:
       containers:
         - name: nginx
           image: nginx:1.25
-          ports:
-            - containerPort: 80
           volumeMounts:
-            # load config as single file from destination folder
-            - name: nginx-config
+            - name: config-volume
               mountPath: /etc/nginx/conf.d/default.conf
               subPath: main.conf
-            # טעינת ה-HTML כקובץ בודד
-            # load HTML as single file from destination folder
-            - name: nginx-html
+            - name: html-volume
               mountPath: /usr/share/nginx/html/index.html
               subPath: index.html
       volumes:
-        - name: nginx-config
+        - name: config-volume
           configMap:
             name: nginx-lab-config
-        - name: nginx-html
+        - name: html-volume
           configMap:
             name: nginx-lab-config

@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: nginx-lab-config
-  namespace: lab-security
+    name: nginx-lab-config
+    namespace: lab-security
 data:
     main.conf: |
       upstream dvwa_backend {
@@ -29,286 +29,217 @@ data:
           }
       }
 
-      index.html: |
+    index.html: |
         <!DOCTYPE html>
         <html lang="en">
         <head>
-            <meta charset="UTF-8" />
-            <title>Shmuel Lab - Concept Control</title>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <style>
-                * {
-                    box-sizing: border-box;
-                    margin: 0;
-                    padding: 0;
-                }
-                body {
-                    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-                    background: radial-gradient(circle at top, #1f2933, #020617 55%);
-                    color: #e5e7eb;
-                    min-height: 100vh;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                }
-                .page {
-                    max-width: 1080px;
-                    width: 100%;
-                    padding: 32px 20px;
-                }
-                .hero {
-                    background: rgba(15, 23, 42, 0.9);
-                    border-radius: 18px;
-                    padding: 28px 28px 24px;
-                    box-shadow: 0 24px 60px rgba(0,0,0,0.55);
-                    border: 1px solid rgba(148, 163, 184, 0.18);
-                    margin-bottom: 22px;
-                }
-                .hero-tag {
-                    display: inline-flex;
-                    align-items: center;
-                    gap: 8px;
-                    font-size: 11px;
-                    letter-spacing: .12em;
-                    text-transform: uppercase;
-                    color: #9ca3af;
-                    padding: 4px 10px;
-                    border-radius: 999px;
-                    border: 1px solid rgba(148, 163, 184, 0.35);
-                    margin-bottom: 14px;
-                }
-                .hero-title {
-                    font-size: 28px;
-                    font-weight: 650;
-                    margin-bottom: 6px;
-                }
-                .hero-subtitle {
-                    font-size: 14px;
-                    color: #9ca3af;
-                    max-width: 520px;
-                    line-height: 1.5;
-                }
-                .hero-meta {
-                    display: flex;
-                    flex-wrap: wrap;
-                    gap: 14px;
-                    margin-top: 18px;
-                    font-size: 12px;
-                    color: #9ca3af;
-                }
-                .pill {
-                    padding: 6px 10px;
-                    border-radius: 999px;
-                    background: rgba(15, 118, 110, 0.18);
-                    color: #6ee7b7;
-                    border: 1px solid rgba(45, 212, 191, 0.35);
-                }
-                .grid {
-                    display: grid;
-                    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-                    gap: 16px;
-                    margin-top: 12px;
-                }
-                .card {
-                    background: rgba(15, 23, 42, 0.92);
-                    border-radius: 16px;
-                    padding: 16px 16px 14px;
-                    border: 1px solid rgba(75, 85, 99, 0.65);
-                    box-shadow: 0 12px 30px rgba(0,0,0,0.5);
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-                }
-                .card-header {
-                    margin-bottom: 10px;
-                }
-                .card-title {
-                    font-size: 16px;
-                    font-weight: 600;
-                    margin-bottom: 2px;
-                }
-                .card-subtitle {
-                    font-size: 12px;
-                    color: #9ca3af;
-                }
-                .card-body {
-                    font-size: 12px;
-                    color: #9ca3af;
-                    line-height: 1.5;
-                    margin-bottom: 10px;
-                }
-                .card-actions {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    gap: 8px;
-                    margin-top: 4px;
-                }
-                .badge {
-                    font-size: 11px;
-                    padding: 3px 8px;
-                    border-radius: 999px;
-                    border: 1px solid rgba(148,163,184,0.4);
-                    color: #9ca3af;
-                }
-                .btn {
-                    display: inline-flex;
-                    align-items: center;
-                    justify-content: center;
-                    gap: 6px;
-                    font-size: 12px;
-                    font-weight: 600;
-                    padding: 7px 14px;
-                    border-radius: 999px;
-                    text-decoration: none;
-                    cursor: pointer;
-                    border: none;
-                    transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.1s ease;
-                    white-space: nowrap;
-                }
-                .btn-primary {
-                    background: linear-gradient(135deg, #22c55e, #16a34a);
-                    color: #022c22;
-                    box-shadow: 0 12px 30px rgba(34, 197, 94, 0.35);
-                }
-                .btn-secondary {
-                    background: rgba(15, 23, 42, 0.95);
-                    color: #e5e7eb;
-                    border: 1px solid rgba(148, 163, 184, 0.6);
-                }
-                .btn:hover {
-                    transform: translateY(-1px);
-                    box-shadow: 0 16px 32px rgba(0,0,0,0.55);
-                }
-                .footer {
-                    margin-top: 8px;
-                    font-size: 11px;
-                    text-align: center;
-                    color: #6b7280;
-                }
-                @media (max-width: 640px) {
-                    .hero {
-                        padding: 22px 18px 18px;
-                    }
-                    .hero-title {
-                        font-size: 22px;
-                    }
-                }
-            </style>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Shmuel Lab - Concept Control</title>
+        <style>
+            :root{
+            --bg1:#1f2933; --bg2:#020617;
+            --panel:rgba(15,23,42,.92);
+            --border:rgba(148,163,184,.18);
+            --text:#e5e7eb; --muted:#9ca3af; --muted2:#6b7280;
+            --radius:16px;
+            }
+
+            *{ box-sizing:border-box; margin:0; padding:0; }
+            body{
+            font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+            background:radial-gradient(circle at top,var(--bg1),var(--bg2) 55%);
+            color:var(--text);
+            min-height:100vh;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            }
+
+            .page{ max-width:1080px; width:100%; padding:32px 20px; }
+
+            .hero{
+            background:rgba(15,23,42,.9);
+            border-radius:18px;
+            padding:28px 28px 24px;
+            box-shadow:0 24px 60px rgba(0,0,0,.55);
+            border:1px solid var(--border);
+            margin-bottom:22px;
+            }
+
+            .hero-tag{
+            display:inline-flex; align-items:center; gap:8px;
+            font-size:11px; letter-spacing:.12em; text-transform:uppercase;
+            color:var(--muted);
+            padding:4px 10px; border-radius:999px;
+            border:1px solid rgba(148,163,184,.35);
+            margin-bottom:14px;
+            }
+
+            .hero-title{ font-size:28px; font-weight:650; margin-bottom:6px; }
+            .hero-subtitle{ font-size:14px; color:var(--muted); max-width:520px; line-height:1.5; }
+
+            .hero-meta{
+            display:flex; flex-wrap:wrap; gap:14px;
+            margin-top:18px; font-size:12px; color:var(--muted);
+            }
+
+            .pill{
+            padding:6px 10px; border-radius:999px;
+            background:rgba(15,118,110,.18);
+            color:#6ee7b7;
+            border:1px solid rgba(45,212,191,.35);
+            }
+
+            .grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+            gap:16px;
+            margin-top:12px;
+            }
+
+            .card{
+            background:var(--panel);
+            border-radius:var(--radius);
+            padding:16px 16px 14px;
+            border:1px solid rgba(75,85,99,.65);
+            box-shadow:0 12px 30px rgba(0,0,0,.5);
+            display:flex;
+            flex-direction:column;
+            justify-content:space-between;
+            min-height:170px;
+            }
+
+            .card-title{ font-size:16px; font-weight:600; margin-bottom:2px; }
+            .card-subtitle,.card-body{ font-size:12px; color:var(--muted); line-height:1.5; }
+            .card-body{ margin-top:8px; margin-bottom:10px; }
+
+            .card-actions{
+            display:flex; justify-content:space-between; align-items:center; gap:8px;
+            margin-top:4px;
+            }
+
+            .badge{
+            font-size:11px; padding:3px 8px; border-radius:999px;
+            border:1px solid rgba(148,163,184,.4);
+            color:var(--muted);
+            }
+
+            .btn{
+            display:inline-flex; align-items:center; justify-content:center;
+            font-size:12px; font-weight:600;
+            padding:7px 14px;
+            border-radius:999px;
+            text-decoration:none;
+            transition:transform .1s ease, box-shadow .1s ease;
+            white-space:nowrap;
+            outline:none;
+            }
+
+            .btn-primary{
+            background:linear-gradient(135deg,#22c55e,#16a34a);
+            color:#022c22;
+            box-shadow:0 12px 30px rgba(34,197,94,.35);
+            }
+
+            .btn:hover{ transform:translateY(-1px); box-shadow:0 16px 32px rgba(0,0,0,.55); }
+            .btn:focus-visible{ box-shadow:0 0 0 3px rgba(34,197,94,.35), 0 16px 32px rgba(0,0,0,.55); }
+
+            .footer{ margin-top:8px; font-size:11px; text-align:center; color:var(--muted2); }
+
+            @media (max-width:640px){
+            .hero{ padding:22px 18px 18px; }
+            .hero-title{ font-size:22px; }
+            }
+        </style>
         </head>
         <body>
-            <main class="page">
-                <section class="hero">
-                      <div class="hero-tag">
-                          <span>SHMUEL LAB</span>
-                          <span>CONCEPT CONTROL</span>
-                      </div>
-                      <h1 class="hero-title">Kubernetes Home Lab Experience</h1>
-                      <p class="hero-subtitle">
-                          Central landing page for your Kubernetes + Argo CD lab. 
-                          Use these tiles to jump into the core systems, external tools and demo integrations.
-                      </p>
-                      <div class="hero-meta">
-                          <span class="pill">GitOps powered by Argo CD</span>
-                          <span>Cluster: <strong>Home-Lab</strong></span>
-                          <span>Environment: <strong>Playground</strong></span>
-                      </div>
-                      <div class="grid">
-                          <article class="card">
-                              <div>
-                                  <div class="card-header">
-                                      <h2 class="card-title">Argo CD</h2>
-                                      <p class="card-subtitle">Manage deployments, sync status and application health.</p>
-                                  </div>
-                                  <p class="card-body">
-                                      Open the GitOps control plane, review application graphs, and trigger manual syncs or rollbacks
-                                      for your lab services.
-                                  </p>
-                              </div>
-                              <div class="card-actions">
-                                  <span class="badge">GitOps</span>
-                                  <a class="btn btn-primary" href="https://192.168.10.25:30082/login" target="_blank" rel="noopener noreferrer">
-                                      Go To Argo CD
-                                  </a>
-                              </div>
-                          </article>
+        <main class="page">
+            <section class="hero">
+            <div class="hero-tag">
+                <span>SHMUEL LAB</span>
+                <span>CONCEPT CONTROL</span>
+            </div>
 
-                          <article class="card">
-                              <div>
-                                  <div class="card-header">
-                                      <h2 class="card-title">Github</h2>
-                                      <p class="card-subtitle">Kubernetes sandbox for hands-on learning and security labs.</p>
-                                  </div>
-                                  <p class="card-body">
-                                      Personal k8s playground used to learn, break, and rebuild real-world patterns.
-                                  </p>
-                              </div>
-                              <div class="card-actions">
-                                  <span class="badge">GitOps</span>
-                                  <a class="btn btn-primary" href="https://github.com/Shmuel-Sayam/k8s-lab/" target="_blank" rel="noopener noreferrer">
-                                      Go To Github
-                                  </a>
-                              </div>
-                          </article>
+            <h1 class="hero-title">Kubernetes Home Lab Experience</h1>
+            <p class="hero-subtitle">
+                Central landing page for your Kubernetes + Argo CD lab.
+                Use these tiles to jump into the core systems, external tools and demo integrations.
+            </p>
 
-                          <article class="card">
-                              <div>
-                                  <div class="card-header">
-                                      <h2 class="card-title">Grafana</h2>
-                                      <p class="card-subtitle">Grafana dashboards for observability and lab visibility.</p>
-                                  </div>
-                                  <p class="card-body">
-                                      Grafana dashboards for tracking performance, errors, and security signals in lab environments.
-                                  </p>
-                              </div>
-                              <div class="card-actions">
-                                  <span class="badge">Monitoring</span>
-                                  <a class="btn btn-primary" href="http://192.168.10.25:30900" target="_blank" rel="noopener noreferrer">
-                                      Go To Grafana
-                                  </a>
-                              </div>
-                          </article>                    
-                          <article class="card">
-                              <div>
-                                  <div class="card-header">
-                                      <h2 class="card-title">Nginx Health Status</h2>
-                                      <p class="card-subtitle">Validate service availability and reverse proxy status.</p>
-                                  </div>
-                                  <p class="card-body">
-                                      Access /health to confirm NGINX is running, responsive, and correctly routing traffic within the lab.
-                                  </p>
-                              </div>
-                              <div class="card-actions">
-                                  <span class="badge">DevOps</span>
-                                  <a class="btn btn-primary" href="http://192.168.10.25:30083/health" target="_blank" rel="noopener noreferrer">
-                                      Go To Health Check
-                                  </a>
-                              </div>
-                          </article>
-                          
-                          <article class="card">
-                              <div>
-                                  <div class="card-header">
-                                      <h2 class="card-title">DVWA Web Server</h2>
-                                      <p class="card-subtitle">Test vulnerable application exposure through a secured ingress layer.</p>
-                                  </div>
-                                  <p class="card-body">
-                                      Expose DVWA through NGINX to emulate real-world reverse proxy and security behavior.
-                                  </p>
-                              </div>
-                              <div class="card-actions">
-                                  <span class="badge">DevSecOps</span>
-                                  <a class="btn btn-primary" href="http://192.168.10.25:30083/dvwa" target="_blank" rel="noopener noreferrer">
-                                      Go To DVWA
-                                  </a>
-                              </div>
-                          </article>
-                          
-                      </div>
-                      <p class="footer">
-                          Shmuel Home Lab &bull; Kubernetes · Argo CD · NGINX · GitOps Playground
-                      </p>
-                  </section>
-              </main>
-          </body>
-          </html>
+            <div class="hero-meta">
+                <span class="pill">GitOps powered by Argo CD</span>
+                <span>Cluster: <strong>Home-Lab</strong></span>
+                <span>Environment: <strong>Playground</strong></span>
+            </div>
+
+            <div id="cards" class="grid" aria-label="Lab quick links"></div>
+
+            <p class="footer">Shmuel Home Lab • Kubernetes · Argo CD · NGINX · GitOps Playground</p>
+            </section>
+        </main>
+
+        <script>
+            const cards = [
+            {
+                title: "Argo CD",
+                subtitle: "Manage deployments, sync status and application health.",
+                body: "Open the GitOps control plane, review application graphs, and trigger manual syncs or rollbacks for your lab services.",
+                badge: "GitOps",
+                href: "https://192.168.10.25:30082",
+                cta: "Go To Argo CD"
+            },
+            {
+                title: "GitHub",
+                subtitle: "Kubernetes sandbox for hands-on learning and security labs.",
+                body: "Personal k8s playground used to learn, break, and rebuild real-world patterns.",
+                badge: "GitOps",
+                href: "https://github.com/Shmuel-Sayam/k8s-lab/",
+                cta: "Go To GitHub"
+            },
+            {
+                title: "Grafana",
+                subtitle: "Grafana dashboards for observability and lab visibility.",
+                body: "Grafana dashboards for tracking performance, errors, and security signals in lab environments.",
+                badge: "Monitoring",
+                href: "http://192.168.10.25:30900",
+                cta: "Go To Grafana"
+            },
+            {
+                title: "NGINX Health Status",
+                subtitle: "Validate service availability and reverse proxy status.",
+                body: "Access /health to confirm NGINX is running, responsive, and correctly routing traffic within the lab.",
+                badge: "DevOps",
+                href: "http://192.168.10.25:30083/health",
+                cta: "Go To Health Check"
+            },
+            {
+                title: "DVWA Web Server",
+                subtitle: "Test vulnerable application exposure through a secured ingress layer.",
+                body: "Expose DVWA through NGINX to emulate real-world reverse proxy and security behavior.",
+                badge: "DevSecOps",
+                href: "http://192.168.10.25:30083/dvwa",
+                cta: "Go To DVWA"
+            }
+            ];
+
+            const root = document.getElementById("cards");
+            root.innerHTML = cards.map(c => `
+            <article class="card">
+                <div>
+                <h2 class="card-title">${c.title}</h2>
+                <p class="card-subtitle">${c.subtitle}</p>
+                <p class="card-body">${c.body}</p>
+                </div>
+                <div class="card-actions">
+                <span class="badge">${c.badge}</span>
+                <a class="btn btn-primary" href="${c.href}" target="_blank" rel="noopener noreferrer"
+                    aria-label="${c.cta} (opens in a new tab)">
+                    ${c.cta}
+                </a>
+                </div>
+            </article>
+            `).join("");
+        </script>
+        </body>
+        </html>
