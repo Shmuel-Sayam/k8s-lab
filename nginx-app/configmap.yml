@@ -35,7 +35,7 @@ data:
           }
 
           location /dvwa {
-            return 301 $scheme://$http_host/dvwa/;
+            return 301 $scheme://$http_host:30083/dvwa/;
         }
       }
 
