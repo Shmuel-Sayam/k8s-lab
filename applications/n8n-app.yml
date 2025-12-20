@@ -24,9 +24,6 @@ spec:
         
         postgresql:
           enabled: true
-          auth:
-            database: n8n
-            username: n8n
           primary:
             persistence:
               enabled: true
