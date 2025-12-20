@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: n8n
+  namespace: argocd
+spec:
+  project: default
+  source:
+    chart: n8n
+    repoURL: https://8gears.github.io/n8n-helm_chart
+    targetRevision: 0.20.0 
+    helm:
+      values: |
+        n8n:
+          encryptionKey: "my-secret-key-123" 
+        
+        persistence:
+          enabled: true
+          size: 5Gi
+          storageClassName: "local-path"
+        
+        database:
+          type: postgresdb
+        postgresql:
+          enabled: true
+          persistence:
+            size: 5Gi
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: n8n-lab 
+  
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    createNamespace: true
