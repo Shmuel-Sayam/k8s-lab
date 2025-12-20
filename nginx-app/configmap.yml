@@ -34,9 +34,9 @@ data:
               proxy_redirect off;
           }
 
-          location /dvwa {
-            return 301 $scheme://$http_host:30083/dvwa/;
-        }
+        #   location /dvwa {
+        #     return 301 $scheme://$http_host:30083/dvwa/;
+        # }
       }
 
     index.html: |
