@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     chart: n8n
-    repoURL: https://8gears.github.io/n8n-helm_chart
+    repoURL: https://github.com/8gears/n8n-helm-chart
     targetRevision: 0.20.0 
     helm:
       values: |
