@@ -22,7 +22,10 @@ data:
 
         location /health {
             default_type application/json;
-            return 200 '{"status":"UP","environment":"production","cluster":"shmuel-lab","timestamp":"$time_local"}';
+            return 200 '{"status":"UP",
+            "environment":"production",
+            "cluster":"shmuel-lab",
+            "timestamp":"$time_local"}';
         }
 
           location /dvwa/ {
@@ -46,6 +49,7 @@ data:
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Shmuel Lab - Concept Control</title>
+        <link rel="icon" href="https://cdn-icons-png.flaticon.com/128/4842/4842902.png" type="image/png">
         <style>
             :root {
                 --bg-gradient: linear-gradient(-45deg, #020617, #0f172a, #1e293b, #020617);
