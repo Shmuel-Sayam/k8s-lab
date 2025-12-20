@@ -49,7 +49,7 @@ data:
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Shmuel Lab - Concept Control</title>
-        <link rel="icon" href="https://cdn-icons-png.flaticon.com/128/4842/4842902.png" type="image/png">
+        <link rel="icon" href="https://cdn-icons-png.flaticon.com/128/2316/2316109.png" type="image/png">
         <style>
             :root {
                 --bg-gradient: linear-gradient(-45deg, #020617, #0f172a, #1e293b, #020617);
