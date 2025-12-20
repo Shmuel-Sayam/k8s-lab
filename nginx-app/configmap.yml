@@ -22,12 +22,10 @@ data:
 
         location /health {
             default_type application/json;
-            return 200 '{
-            "status":"UP",
+            return 200 '{"status":"UP",
             "environment":"production",
             "cluster":"shmuel-lab",
-            "timestamp":"$time_local"
-            }';
+            "timestamp":"$time_local"}';
         }
 
           location /dvwa/ {
