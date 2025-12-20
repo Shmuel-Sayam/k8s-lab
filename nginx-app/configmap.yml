@@ -30,7 +30,7 @@ data:
           }
 
           location /dvwa/ {
-              proxy_pass http://dvwa_backend/dvwa/;
+              proxy_pass http://dvwa_backend;
               proxy_redirect off;
           }
 
