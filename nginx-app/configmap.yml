@@ -16,11 +16,6 @@ data:
           root /usr/share/nginx/html;
           index index.html;
 
-          proxy_set_header Host $host;
-          proxy_set_header X-Real-IP $remote_addr;
-          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-          proxy_set_header X-Forwarded-Proto $scheme;
-
           location = / {
               try_files /index.html =404;
           }
@@ -30,13 +25,17 @@ data:
           }
 
           location /dvwa/ {
-              proxy_pass http://dvwa_backend;
-              proxy_redirect off;
+              proxy_pass http://dvwa_backend/;
+              proxy_set_header Host $host:$server_port;
+              proxy_set_header X-Real-IP $remote_addr;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header X-Forwarded-Proto $scheme;
+              proxy_redirect http://dvwa-lab/ /dvwa/;
           }
 
-        #   location /dvwa {
-        #     return 301 $scheme://$http_host:30083/dvwa/;
-        # }
+          location /dvwa {
+            return 301 $scheme://$http_host:30083/dvwa/;
+        }
       }
 
     index.html: |
