@@ -20,9 +20,10 @@ data:
               try_files /index.html =404;
           }
 
-          location /health {
-              return 200 "ok\n";
-          }
+        location /health {
+            default_type application/json;
+            return 200 '{"status":"UP","environment":"production","cluster":"shmuel-lab","timestamp":"$time_local"}';
+        }
 
           location /dvwa/ {
               proxy_pass http://dvwa_backend/;
