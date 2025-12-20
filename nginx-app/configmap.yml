@@ -189,6 +189,7 @@ data:
         <script>
             const cards = [
                 { title: "Argo CD", body: "Real-time GitOps synchronization and deployment lifecycle management.", href: "https://192.168.10.25:30082", cta: "Launch Console" },
+                { title: "Nginx Health", body: "Verify infrastructure connectivity and routing health.", href: "http://192.168.10.25:30083/health", cta: "Health Status" },
                 { title: "DVWA App", body: "Target environment for penetration testing and security auditing.", href: "http://192.168.10.25:30083/dvwa/login.php", cta: "Start Testing" },
                 { title: "Grafana", body: "Advanced observability and cluster metrics visualization.", href: "http://192.168.10.25:30900", cta: "View Dashboards" },
                 { title: "GitHub Repo", body: "Source code, YAML manifests and lab documentation.", href: "https://github.com/Shmuel-Sayam/k8s-lab/", cta: "View Source" }
